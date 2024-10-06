@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/**
+ * My To Do List App
+ *
+ * @format
+ */
 
-export default function App() {
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import ToDoList from './src/ToDoList';
+import ToDoForm from './src/ToDoForm';
+
+const App = () => {
+  const [tasks, setTasks] = useState(['Task 1', 'Task 2']);
+
+  const addTask = (task) => {
+    setTasks([...tasks, task]);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, padding: 20 }}>
+      <ToDoList tasks={tasks} />
+      <ToDoForm onAddTask={addTask} />
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
